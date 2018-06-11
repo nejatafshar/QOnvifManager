@@ -25,22 +25,18 @@ public:
         return m_userLevel;
     }
 
-    bool result() const
-    {
+    bool result() const {
         return m_result;
     }
-    void setResult(bool result)
-    {
+    void setResult(bool result) {
         m_result = result;
     }
 
-    bool isAddMode() const
-    {
-        return m_isAddMode;
+    int actionMode() const {
+        return m_actionMode;
     }
-    void setIsAddMode(bool isAddMode)
-    {
-        m_isAddMode = isAddMode;
+    void setActionMode(int actionMode) {
+        m_actionMode = actionMode;
     }
 
 public slots:
@@ -59,10 +55,10 @@ public slots:
 private:
     QStringList m_userNames;
     QStringList m_passWords;
-    //Administrator, Operator, User, Anonymous, Extended
+    // Administrator, Operator, User, Anonymous, Extended
     QStringList m_userLevel;
-    bool m_isAddMode;
-    bool m_result;
+    int         m_actionMode;
+    bool        m_result;
 };
 }
 #endif // USER_H

@@ -6,12 +6,13 @@
 
 QT       += core network xml xmlpatterns
 
-CONFIG += c++11
+CONFIG += c++17
 CONFIG += staticlib
 
 #DEFINES += QT_DLL QT_NETWORK_LIB QT_HELP_LIB QT_SCRIPT_LIB QT_WIDGETS_LIB QT_XML_LIB QT_XMLPATTERNS_LIB ONVIFC_LIB
 
-DESTDIR  = ../../../bin/
+CONFIG(release, debug|release): DESTDIR = $$PWD/../bin
+else:CONFIG(debug, debug|release): DESTDIR = $$PWD/../debug
 
 TARGET = QOnvifManager
 
@@ -71,7 +72,6 @@ SOURCES += \
     ptz_management/relativemove.cpp \
     ptz_management/removepreset.cpp \
     ptz_management/stop.cpp \
-    client.cpp \
     mediamanagement.cpp \
     message.cpp \
     messageparser.cpp \
@@ -125,7 +125,6 @@ HEADERS += \
     ../include/QOnvifManager/ptz_management/relativemove.h \
     ../include/QOnvifManager/ptz_management/removepreset.h \
     ../include/QOnvifManager/ptz_management/stop.h \
-    ../include/QOnvifManager/client.h \
     ../include/QOnvifManager/mediamanagement.h \
     ../include/QOnvifManager/message.h \
     ../include/QOnvifManager/messageparser.h \
