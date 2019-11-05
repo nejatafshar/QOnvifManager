@@ -52,5 +52,5 @@ private:
     QList<QList<int>> m_bitratList;
     QList<QList<int>> m_sampleRateList;
 };
-}
+} // namespace ONVIF
 #endif // AUDIOENCODERCONFIGURATIONOPTIONS_H

@@ -140,5 +140,5 @@ private:
     QString m_speedZoomSpace;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // RELATIVEMOVE_H

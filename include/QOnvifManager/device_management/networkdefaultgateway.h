@@ -38,5 +38,5 @@ private:
     QString m_ipv6Address;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // NETWORKDEFAULTGATEWAY_H

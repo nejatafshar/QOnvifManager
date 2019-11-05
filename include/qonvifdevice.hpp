@@ -10,7 +10,7 @@
 namespace ONVIF {
 class DeviceManagement;
 class MediaManagement;
-}
+} // namespace ONVIF
 ///////////////////////////////////////////////////////////////////////////////
 namespace device {
 
@@ -123,7 +123,7 @@ public:
     void setNetworkInterfaces(Data::Network::Interfaces _interfaces);
     void setNetworkProtocols(Data::Network::Protocols _protocols);
     void
-    setNetworkDefaultGateway(Data::Network::DefaultGateway _defaultGateway);
+         setNetworkDefaultGateway(Data::Network::DefaultGateway _defaultGateway);
     void setNetworkDiscoveryMode(Data::Network::DiscoveryMode _discoveryMode);
     void setNetworkDNS(Data::Network::DNS _dns);
     void setNetworkHostname(Data::Network::Hostname _hostname);

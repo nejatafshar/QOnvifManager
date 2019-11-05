@@ -127,5 +127,5 @@ private:
     QList<bool>    m_autoStart;
     QList<QString> m_sessionTimeout;
 };
-}
+} // namespace ONVIF
 #endif // AUDIOENCODERCONFIGURATIONS_H

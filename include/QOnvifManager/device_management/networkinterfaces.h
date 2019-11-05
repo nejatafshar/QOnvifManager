@@ -195,5 +195,5 @@ private:
     QString m_interfaceToken;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // NETWORKINTERFACES_H

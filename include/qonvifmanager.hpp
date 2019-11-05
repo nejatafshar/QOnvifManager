@@ -43,7 +43,7 @@ public:
     void getDeviceScopes(QString _deviceEndPointAddress);
     void getDeviceVideoEncoderConfigurations(QString _deviceEndPointAddress);
     void
-    getDeviceVideoEncoderConfigurationOptions(QString _deviceEndPointAddress);
+         getDeviceVideoEncoderConfigurationOptions(QString _deviceEndPointAddress);
     void getDeviceStreamUris(QString _deviceEndPointAddress);
     void getDeviceProfiles(QString _deviceEndPointAddress);
     void getDeviceNetworkInterfaces(QString _deviceEndPointAddress);

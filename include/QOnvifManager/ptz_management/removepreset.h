@@ -44,5 +44,5 @@ private:
     QString m_profileToken;
     QString m_presetToken;
 };
-}
+} // namespace ONVIF
 #endif // REMOVEPRESET_H

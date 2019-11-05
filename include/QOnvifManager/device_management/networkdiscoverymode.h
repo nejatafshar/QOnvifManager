@@ -30,5 +30,5 @@ private:
     QString m_discoveryMode;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // NETWORKDISCOVERYMODE_H

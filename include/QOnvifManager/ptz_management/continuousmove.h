@@ -95,5 +95,5 @@ private:
     bool    m_result;
     QString m_timeout;
 };
-}
+} // namespace ONVIF
 #endif // CONTINUOUSMOVE_H

@@ -62,5 +62,5 @@ private:
     QString m_sourceToken;
     QRect   m_bounds;
 };
-}
+} // namespace ONVIF
 #endif // VIDEOSOURCECONFIGURATION_H

@@ -233,4 +233,4 @@ private:
     QList<float>   m_zoomXRangeMin;
     QList<float>   m_zoomXRangeMax;
 };
-}
+} // namespace ONVIF

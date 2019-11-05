@@ -2187,14 +2187,14 @@ MediaManagement::onMessageParserReceived(
             result->find(
                 "//*[local-name() = 'SetVideoEncoderConfigurationResponse']"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetImageSettings: {
         bool r = false;
         if (result->find("//timg:SetImagingSettingsResponse") ||
             result->find("//*[local-name() = 'SetImagingSettingsResponse']"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     default:
         break;

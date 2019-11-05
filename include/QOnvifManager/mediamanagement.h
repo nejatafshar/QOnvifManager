@@ -35,10 +35,10 @@ signals:
     void resultReceived(QVariant, device::MessageType);
 
 protected:
-    Message* newMessage();
+    Message*                newMessage();
     QHash<QString, QString> namespaces(const QString& key);
 
     void onMessageParserReceived(MessageParser*, device::MessageType);
 };
-}
+} // namespace ONVIF
 #endif // MEDIAMANAGEMENT_H

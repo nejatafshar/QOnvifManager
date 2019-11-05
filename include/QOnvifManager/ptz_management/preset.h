@@ -53,5 +53,5 @@ private:
     QString m_presetToken;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // PRESET_H

@@ -105,5 +105,5 @@ private:
     QString m_token;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // IMAGESETTING_H

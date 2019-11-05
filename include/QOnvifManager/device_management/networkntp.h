@@ -66,5 +66,5 @@ private:
     QString m_ipv6Address;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // NETWORKNTP_H

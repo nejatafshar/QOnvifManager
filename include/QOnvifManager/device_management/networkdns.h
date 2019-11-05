@@ -59,5 +59,5 @@ private:
     QStringList m_ipv4Address;
     bool        m_result;
 };
-}
+} // namespace ONVIF
 #endif // NETWORKDNS_H

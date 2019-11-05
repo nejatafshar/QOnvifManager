@@ -60,7 +60,7 @@ public:
     explicit Capabilities(QObject* parent = NULL);
     virtual ~Capabilities();
     enum Category { All, Analytics, Device, Events, Imaging, Media, PTZ };
-    QString enumToString(Category category);
+    QString     enumToString(Category category);
     QDomElement toxml();
     QString     ptzXAddr() const {
         return m_ptzXAddr;
@@ -387,5 +387,5 @@ private:
     bool    m_discoveryBye;
     bool    m_remoteDiscovery;
 };
-}
+} // namespace ONVIF
 #endif // CAPABILITIES_H

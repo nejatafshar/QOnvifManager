@@ -272,5 +272,5 @@ private:
     QList<int>     m_maximumNumberOfPresets;
     QList<bool>    m_homeSupported;
 };
-}
+} // namespace ONVIF
 #endif // NODES_H

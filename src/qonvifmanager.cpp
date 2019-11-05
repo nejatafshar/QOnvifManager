@@ -12,11 +12,11 @@ public:
         : iuserName(_username), ipassword(_password) {}
     ~QOnvifManagerPrivate() {}
 
-    QString iuserName;
-    QString ipassword;
+    QString                      iuserName;
+    QString                      ipassword;
     QMap<QString, QOnvifDevice*> idevicesMap;
-    QHostAddress           ihostAddress;
-    ONVIF::DeviceSearcher* ideviceSearcher;
+    QHostAddress                 ihostAddress;
+    ONVIF::DeviceSearcher*       ideviceSearcher;
 };
 
 QOnvifManager::QOnvifManager(
@@ -44,7 +44,6 @@ QOnvifManager::QOnvifManager(
         &QOnvifManager::newDeviceFound,
         this,
         [this, d](device::QOnvifDevice* _device) {
-
             connect(
                 _device,
                 &QOnvifDevice::informationReceived,

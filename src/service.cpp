@@ -43,7 +43,7 @@ Service::sendMessage(
 
             if (result != "") {
                 QHash<QString, QString> names = namespaces(namespaceKey);
-                emit messageParserReceived(
+                emit                    messageParserReceived(
                     new MessageParser(result, names), messageType);
             }
 

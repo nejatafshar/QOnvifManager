@@ -15,7 +15,7 @@ class SystemScopes : public QObject
     Q_PROPERTY(bool result READ result WRITE setResult)
 public:
     QDomElement toxml();
-    void setScopes(QString name, QString location);
+    void        setScopes(QString name, QString location);
     SystemScopes();
 
     QString name() const {
@@ -56,6 +56,6 @@ private:
     QString m_hardware;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 
 #endif // SYSTEMSCOPES_HPP

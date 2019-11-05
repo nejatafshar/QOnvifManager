@@ -879,55 +879,55 @@ PtzManagement::onMessageParserReceived(
         bool r = false;
         if (result->find("//tptz:RemovePresetResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetPreset: {
         bool r = false;
         if (result->find("//tptz:SetPresetResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::ContinuousMove: {
         bool r = false;
         if (result->find("//tptz:ContinuousMoveResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::AbsoluteMove: {
         bool r = false;
         if (result->find("//tptz:AbsoluteMoveResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::RelativeMove: {
         bool r = false;
         if (result->find("//tptz:RelativeMoveResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::Stop: {
         bool r = false;
         if (result->find("//tptz:StopResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::GotoPreset: {
         bool r = false;
         if (result->find("//tptz:GotoPresetResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::GotoHomePosition: {
         bool r = false;
         if (result->find("//tptz:GotoHomePositionResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetHomePosition: {
         bool r = false;
         if (result->find("//tptz:SetHomePositionResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     default:
         break;

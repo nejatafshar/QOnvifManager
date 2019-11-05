@@ -133,7 +133,6 @@ QOnvifDevice::QOnvifDevice(
         &ONVIF::DeviceManagement::resultReceived,
         this,
         [this, d](QVariant var, MessageType messageType) {
-
             switch (messageType) {
             case MessageType::Information: {
                 QHash<QString, QString> deviceInformationHash =
@@ -391,7 +390,6 @@ QOnvifDevice::QOnvifDevice(
         &ONVIF::MediaManagement::resultReceived,
         this,
         [this, d](QVariant var, MessageType messageType) {
-
             switch (messageType) {
             case MessageType::Profiles: {
                 QScopedPointer<ONVIF::Profiles> profiles(
@@ -820,7 +818,6 @@ QOnvifDevice::QOnvifDevice(
         &ONVIF::PtzManagement::resultReceived,
         this,
         [this, d](QVariant var, MessageType messageType) {
-
             switch (messageType) {
             case MessageType::Configurations: {
                 QScopedPointer<ONVIF::Configurations> config(

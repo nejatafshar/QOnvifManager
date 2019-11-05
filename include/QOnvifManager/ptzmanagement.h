@@ -30,10 +30,10 @@ public:
     void setData(device::MessageType, QVariant);
 
     Configurations* getConfigurations();
-    void getConfiguration(Configuration* configuration);
-    Nodes* getNodes();
-    void getNode(Node* node);
-    void getPresets(Presets* presets);
+    void            getConfiguration(Configuration* configuration);
+    Nodes*          getNodes();
+    void            getNode(Node* node);
+    void            getPresets(Presets* presets);
 
     void removePreset(RemovePreset* removePreset);
     void setPreset(Preset* preset);
@@ -50,10 +50,10 @@ signals:
     void resultReceived(QVariant, device::MessageType);
 
 protected:
-    Message* newMessage();
+    Message*                newMessage();
     QHash<QString, QString> namespaces(const QString& key);
 
     void onMessageParserReceived(MessageParser*, device::MessageType);
 };
-}
+} // namespace ONVIF
 #endif // PTZMANAGEMENT_H

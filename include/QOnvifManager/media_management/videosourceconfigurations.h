@@ -50,5 +50,5 @@ private:
     QList<QString> m_sourceToken;
     QList<QRect>   m_bounds;
 };
-}
+} // namespace ONVIF
 #endif

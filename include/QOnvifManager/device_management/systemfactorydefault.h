@@ -36,5 +36,5 @@ private:
     FactoryDefault m_factoryDefault;
     bool           m_result;
 };
-}
+} // namespace ONVIF
 #endif // SYSTEMFACTORYDEFAULT_H

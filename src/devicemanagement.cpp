@@ -462,74 +462,74 @@ DeviceManagement::onMessageParserReceived(
         bool r = false;
         if (result->find("//tds:SetScopesResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetDateAndTime: {
         bool r = false;
         if (result->find("//tds:SetSystemDateAndTimeResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetUsers: {
         bool r = false;
         if (result->find("//tds:CreateUsersResponse") ||
             result->find("//tds:SetUserResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetSystemFactoryDefault: {
         bool r = false;
         if (result->find("//tds:SetSystemFactoryDefaultResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetSystemReboot: {
         bool r = false;
         if (result->find("//tds:SystemRebootResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetNetworkInterfaces: {
         bool r = false;
         if (result->find("//tds:SetNetworkInterfacesResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetNetworkProtocols: {
         bool r = false;
         if (result->find("//tds:SetNetworkProtocolsResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetNetworkDefaultGateway: {
         bool r = false;
         if (result->find("//tds:SetNetworkDefaultGatewayResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetNetworkDiscoveryMode: {
         bool r = false;
         if (result->find("//tds:SetDiscoveryModeResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetNetworkDNS: {
         bool r = false;
         if (result->find("//tds:SetDNSResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetNetworkHostname: {
         bool r = false;
         if (result->find("//tds:SetHostnameResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     case device::MessageType::SetNetworkNTP: {
         bool r = false;
         if (result->find("//tds:SetNTPResponse"))
             r = true;
-        var   = qVariantFromValue(r);
+        var = qVariantFromValue(r);
     } break;
     default:
         break;
@@ -627,57 +627,57 @@ DeviceManagement::setData(device::MessageType messageType, QVariant data) {
         d->deleteLater();
     } break;
     case device::MessageType::SetDateAndTime: {
-        SystemDateAndTime* d =toPtr <ONVIF::SystemDateAndTime> (data);
+        SystemDateAndTime* d = toPtr<ONVIF::SystemDateAndTime>(data);
         domElement           = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetUsers: {
-        Users* d   = toPtr<ONVIF::Users> (data);
+        Users* d   = toPtr<ONVIF::Users>(data);
         domElement = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetSystemFactoryDefault: {
-        SystemFactoryDefault* d = toPtr<ONVIF::SystemFactoryDefault> (data);
+        SystemFactoryDefault* d = toPtr<ONVIF::SystemFactoryDefault>(data);
         domElement              = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetSystemReboot: {
-        SystemReboot* d = toPtr<ONVIF::SystemReboot> (data);
+        SystemReboot* d = toPtr<ONVIF::SystemReboot>(data);
         domElement      = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetNetworkInterfaces: {
-        NetworkInterfaces* d = toPtr<ONVIF::NetworkInterfaces> (data);
+        NetworkInterfaces* d = toPtr<ONVIF::NetworkInterfaces>(data);
         domElement           = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetNetworkProtocols: {
-        NetworkProtocols* d = toPtr<ONVIF::NetworkProtocols> (data);
+        NetworkProtocols* d = toPtr<ONVIF::NetworkProtocols>(data);
         domElement          = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetNetworkDefaultGateway: {
-        NetworkDefaultGateway* d = toPtr<ONVIF::NetworkDefaultGateway> (data);
+        NetworkDefaultGateway* d = toPtr<ONVIF::NetworkDefaultGateway>(data);
         domElement               = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetNetworkDiscoveryMode: {
-        NetworkDiscoveryMode* d = toPtr<ONVIF::NetworkDiscoveryMode> (data);
+        NetworkDiscoveryMode* d = toPtr<ONVIF::NetworkDiscoveryMode>(data);
         domElement              = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetNetworkDNS: {
-        NetworkDNS* d = toPtr<ONVIF::NetworkDNS> (data);
+        NetworkDNS* d = toPtr<ONVIF::NetworkDNS>(data);
         domElement    = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetNetworkHostname: {
-        NetworkHostname* d = toPtr<ONVIF::NetworkHostname> (data);
+        NetworkHostname* d = toPtr<ONVIF::NetworkHostname>(data);
         domElement         = d->toxml();
         d->deleteLater();
     } break;
     case device::MessageType::SetNetworkNTP: {
-        NetworkNTP* d = toPtr<ONVIF::NetworkNTP> (data);
+        NetworkNTP* d = toPtr<ONVIF::NetworkNTP>(data);
         domElement    = d->toxml();
         d->deleteLater();
     } break;

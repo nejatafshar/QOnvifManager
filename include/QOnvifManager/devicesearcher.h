@@ -11,7 +11,7 @@ class DeviceSearcher : public QObject
 public:
     static DeviceSearcher* searcher;
     explicit DeviceSearcher(QHostAddress& addr, QObject* parent = 0);
-    static DeviceSearcher* instance(QHostAddress& addr);
+    static DeviceSearcher*     instance(QHostAddress& addr);
     static QList<QHostAddress> getHostAddress();
     ~DeviceSearcher();
 
@@ -26,5 +26,5 @@ private slots:
 private:
     QUdpSocket* mUdpSocket;
 };
-}
+} // namespace ONVIF
 #endif // ONVIF_DEVICESEARCHER_H

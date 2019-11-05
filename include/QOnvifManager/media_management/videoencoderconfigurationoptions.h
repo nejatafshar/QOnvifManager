@@ -70,16 +70,16 @@ public:
 
 
     QList<int> resAvailableWidthJpeg() const;
-    void setResAvailableWidthJpeg(int resAvailableWidth);
+    void       setResAvailableWidthJpeg(int resAvailableWidth);
 
     QList<int> resAvailableHeightJpeg() const;
-    void setResAvailableHeightJpeg(int resAvailableHeight);
+    void       setResAvailableHeightJpeg(int resAvailableHeight);
 
     QList<int> resAvailableWidthH264() const;
-    void setResAvailableWidthH264(int resAvailableWidth);
+    void       setResAvailableWidthH264(int resAvailableWidth);
 
     QList<int> resAvailableHeightH264() const;
-    void setResAvailableHeightH264(int resAvailableHeight);
+    void       setResAvailableHeightH264(int resAvailableHeight);
 
     QList<H264ProfilesSupported> getH264ProfilesSupported() const;
     void setH264ProfilesSupported(H264ProfilesSupported h264ProfilesSupported);
@@ -109,5 +109,5 @@ private:
     QList<int>                   m_resAvailableHeightH264;
     QList<H264ProfilesSupported> m_h264ProfilesSupported;
 };
-}
+} // namespace ONVIF
 #endif // VIDEOENCODERCONFIGURATIONOPTIONS_H

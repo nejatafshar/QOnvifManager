@@ -24,8 +24,8 @@ public:
     static Message* getOnvifSearchMessage();
     static Message* getMessageWithUserInfo(
         QHash<QString, QString>& namespaces,
-        const QString& name,
-        const QString& passwd);
+        const QString&           name,
+        const QString&           passwd);
 
     explicit Message(
         const QHash<QString, QString>& namespaces, QObject* parent = NULL);
@@ -38,10 +38,10 @@ public:
     QString uuid();
 
 private:
-    QDomDocument mDoc;
+    QDomDocument            mDoc;
     QHash<QString, QString> mNamespaces;
-    QDomElement mBody, mHeader, mEnv;
+    QDomElement             mBody, mHeader, mEnv;
 };
-}
+} // namespace ONVIF
 
 #endif // ONVIF_MESSAGE_H

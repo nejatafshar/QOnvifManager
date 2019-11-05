@@ -38,5 +38,5 @@ private:
     QList<QString> m_token;
     QList<QString> m_name;
 };
-}
+} // namespace ONVIF
 #endif // PRESETS_H

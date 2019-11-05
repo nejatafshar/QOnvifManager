@@ -53,5 +53,5 @@ private:
     bool    m_zoom;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // STOP_H

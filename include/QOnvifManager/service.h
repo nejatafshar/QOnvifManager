@@ -55,7 +55,7 @@ private:
     QNetworkAccessManager networkManager;
     QString               mUrl;
 };
-}
+} // namespace ONVIF
 
 
 #endif // ONVIF_SERVICE_H

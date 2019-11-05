@@ -75,5 +75,5 @@ public:
     QList<bool>    m_autoStartMc;
     QList<QString> m_sessionTimeoutMc;
 };
-}
+} // namespace ONVIF
 #endif // PROFILE_H

@@ -23,7 +23,7 @@ public:
 
     enum DateTimeType { Manual, NTP };
     void
-    setUtcTime(int year, int month, int day, int hour, int minute, int second);
+         setUtcTime(int year, int month, int day, int hour, int minute, int second);
     void setLocalTime(
         int year, int month, int day, int hour, int minute, int second);
     QDomElement toxml();
@@ -91,6 +91,6 @@ private:
     bool         m_isLocal;
     bool         m_result;
 };
-}
+} // namespace ONVIF
 
 #endif // ONVIF_SYSTEMDATEANDTIME_H

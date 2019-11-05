@@ -12,7 +12,7 @@ using namespace ONVIF;
 
 QDomElement
 ONVIF::hashToXml(const QString& name, const QHash<QString, QString>& hash) {
-    QDomElement element = newElement(name);
+    QDomElement                     element = newElement(name);
     QHashIterator<QString, QString> i(hash);
     while (i.hasNext()) {
         i.next();
@@ -93,8 +93,10 @@ CalcWssePassword(
     // QCryptographicHash::Sha1);
 
     hash->addData(buf, SOAP_WSSE_NONCELEN);
-    hash->addData(timeStr.toLocal8Bit().data(), strlen(timeStr.toLocal8Bit().data()));
-    hash->addData(passwd.toLocal8Bit().data(), strlen(passwd.toLocal8Bit().data()));
+    hash->addData(
+        timeStr.toLocal8Bit().data(), strlen(timeStr.toLocal8Bit().data()));
+    hash->addData(
+        passwd.toLocal8Bit().data(), strlen(passwd.toLocal8Bit().data()));
     sha1Output = hash->result();
     QString passwdDigestStr(sha1Output.toBase64());
     QString sha1OutputStr(sha1Output.toHex());
@@ -113,8 +115,8 @@ CalcWssePassword(
 Message*
 Message::getMessageWithUserInfo(
     QHash<QString, QString>& namespaces,
-    const QString& name,
-    const QString& passwd) {
+    const QString&           name,
+    const QString&           passwd) {
     namespaces.insert(
         "wsse",
         "http://docs.oasis-open.org/wss/2004/01/"
@@ -129,9 +131,8 @@ Message::getMessageWithUserInfo(
     QDomElement usernameToken = newElement("wsse:UsernameToken");
     // usernameToken.setAttribute("wsu:Id", "UsernameToken-1");
     // QDateTime current = QDateTime::currentDateTime();
-    QDateTime current = QDateTime::currentDateTimeUtc();
-    QString   timeString =
-        current.toString(Qt::ISODate);
+    QDateTime current    = QDateTime::currentDateTimeUtc();
+    QString   timeString = current.toString(Qt::ISODate);
 // current.setTime_t(0);
 #if 0 /* PasswordText */
     QDomElement username = newElement("wsse:Username", name);

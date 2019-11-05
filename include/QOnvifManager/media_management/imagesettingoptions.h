@@ -106,5 +106,5 @@ private:
     double m_exposureIrisMax;
     double m_exposureIrisMin;
 };
-}
+} // namespace ONVIF
 #endif // IMAGESETTINGOPTIONS_H

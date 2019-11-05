@@ -216,5 +216,5 @@ private:
     QString m_sessionTimeout;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // VIDEOENCODERCONFIGURATION_H

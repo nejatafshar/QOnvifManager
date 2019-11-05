@@ -274,5 +274,5 @@ private:
     QString m_panTiltSpace;
     float   m_zoomX;
 };
-}
+} // namespace ONVIF
 #endif // CONFIGURATION_H

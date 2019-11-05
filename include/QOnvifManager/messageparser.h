@@ -12,12 +12,12 @@ class MessageParser : public QObject
     Q_OBJECT
 public:
     explicit MessageParser(
-        const QString& data,
+        const QString&           data,
         QHash<QString, QString>& namespaces,
-        QObject* parent = 0);
+        QObject*                 parent = 0);
     ~MessageParser();
-    QString getValue(const QString& xpath);
-    bool find(const QString& xpath);
+    QString    getValue(const QString& xpath);
+    bool       find(const QString& xpath);
     QXmlQuery* query();
     QString    nameSpace();
 
@@ -26,6 +26,6 @@ private:
     QString   mNamespaceQueryStr;
     QBuffer   mBuffer;
 };
-}
+} // namespace ONVIF
 
 #endif // ONVIF_MESSAGEPARSER_H

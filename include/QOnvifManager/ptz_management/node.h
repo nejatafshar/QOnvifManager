@@ -417,5 +417,5 @@ private:
     int                   m_maximumNumberOfPresets;
     bool                  m_homeSupported;
 };
-}
+} // namespace ONVIF
 #endif // NODE_H

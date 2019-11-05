@@ -60,5 +60,5 @@ private:
     int         m_actionMode;
     bool        m_result;
 };
-}
+} // namespace ONVIF
 #endif // USER_H

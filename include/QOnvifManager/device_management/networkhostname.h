@@ -39,5 +39,5 @@ private:
     QString m_name;
     bool    m_result;
 };
-}
+} // namespace ONVIF
 #endif // NETWORKHOSTNAME_H

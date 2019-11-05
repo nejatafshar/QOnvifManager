@@ -139,5 +139,5 @@ private:
     bool    m_result;
     QString m_speedPanTiltSpace;
 };
-}
+} // namespace ONVIF
 #endif // ABSOLUTEMOVE_H

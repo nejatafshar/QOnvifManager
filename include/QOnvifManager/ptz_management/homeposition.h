@@ -58,5 +58,5 @@ private:
     //        QString m_presetToken;
     bool m_result;
 };
-}
+} // namespace ONVIF
 #endif // HOMEPOSITION_H

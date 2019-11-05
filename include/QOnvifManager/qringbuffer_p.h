@@ -275,7 +275,7 @@ public:
             if (i == 0)
                 start = head;
             if (i == tailBuffer)
-                end         = tail;
+                end = tail;
             const char* ptr = buffers.at(i).data() + start;
             for (int j = start; j < end; ++j) {
                 if (*ptr++ == c)
@@ -400,7 +400,7 @@ public:
             if (i == 0)
                 start = head;
             if (i == tailBuffer)
-                end       = tail;
+                end = tail;
             const int len = qMin(ret.size() - readSoFar, end - start);
             memcpy(
                 ret.data() + readSoFar, buffers.at(i).constData() + start, len);

@@ -49,5 +49,5 @@ private:
     QList<int>  m_networkProtocolsPort;
     bool        m_result;
 };
-}
+} // namespace ONVIF
 #endif // NETWORKPROTOCOLS_H

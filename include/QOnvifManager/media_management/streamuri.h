@@ -53,5 +53,5 @@ private:
     bool    m_invalidAfterReboot;
     QString m_timeout;
 };
-}
+} // namespace ONVIF
 #endif // STREAMURI_H

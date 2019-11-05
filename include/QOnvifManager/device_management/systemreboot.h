@@ -24,5 +24,5 @@ public slots:
 private:
     bool m_result;
 };
-}
+} // namespace ONVIF
 #endif // SYSTEMREBOOT_H

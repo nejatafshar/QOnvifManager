@@ -47,5 +47,5 @@ private:
     QList<int>     m_useCount;
     QList<QString> m_sourceToken;
 };
-}
+} // namespace ONVIF
 #endif // AUDIOSOURCECONFIGURATIONS_H
