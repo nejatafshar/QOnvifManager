@@ -24,7 +24,7 @@ QOnvifManager::QOnvifManager(
     : QObject(_parent), d_ptr(new QOnvifManagerPrivate(_username, _password)) {
     Q_D(QOnvifManager);
     // device finding
-    d->ideviceSearcher = ONVIF::DeviceSearcher::instance(d->ihostAddress);
+    d->ideviceSearcher = ONVIF::DeviceSearcher::instance();
 
     // when one device found
     connect(

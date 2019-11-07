@@ -1,8 +1,10 @@
 #include "devicesearcher.h"
 #include "message.h"
 #include "messageparser.h"
+
 #include <QBuffer>
 #include <QCoreApplication>
+#include <QDebug>
 #include <QNetworkInterface>
 #include <QTimer>
 #include <QXmlQuery>
@@ -16,12 +18,12 @@
 using namespace ONVIF;
 
 
-DeviceSearcher* DeviceSearcher::searcher = NULL;
+DeviceSearcher* DeviceSearcher::searcher = nullptr;
 
 DeviceSearcher*
-DeviceSearcher::instance(QHostAddress& addr) {
-    if (searcher == NULL) {
-        searcher = new DeviceSearcher(addr);
+DeviceSearcher::instance() {
+    if (searcher == nullptr) {
+        searcher = new DeviceSearcher();
     }
     return searcher;
 }
@@ -49,12 +51,38 @@ DeviceSearcher::getHostAddress() {
     return ipAddressesIPV4;
 }
 
-DeviceSearcher::DeviceSearcher(QHostAddress& addr, QObject* parent)
-    : QObject(parent) {
-    mUdpSocket = new QUdpSocket(this);
-    // QHostAddress host("192.168.0.1");
-    // mUdpSocket->bind(QHostAddress::Any, 0, QUdpSocket::ShareAddress);
-    mUdpSocket->bind(addr, 0, QUdpSocket::ShareAddress);
+DeviceSearcher::DeviceSearcher(QObject* parent) : QObject(parent) {
+
+    auto timer = new QTimer(this);
+    timer->setSingleShot(true);
+    timer->setInterval(1000);
+
+    for (auto i : QNetworkInterface::allInterfaces()) {
+        if ((i.flags() &
+             (QNetworkInterface::IsUp | QNetworkInterface::IsRunning)) &&
+            !(i.flags() & QNetworkInterface::IsLoopBack) && i.isValid()) {
+            for (auto a : i.addressEntries()) {
+                if (a.ip().protocol() == QAbstractSocket::IPv4Protocol) {
+                    mUdpSockets.append(new QUdpSocket(this));
+                    mUdpSockets.last()->bind(
+                        QHostAddress{a.ip().toString()},
+                        0,
+                        QUdpSocket::ShareAddress);
+                    connect(
+                        mUdpSockets.last(),
+                        &QUdpSocket::readyRead,
+                        this,
+                        &DeviceSearcher::readPendingDatagrams);
+
+                    connect(
+                        mUdpSockets.last(),
+                        &QUdpSocket::readyRead,
+                        timer,
+                        static_cast<void (QTimer::*)()>(&QTimer::start));
+                }
+            }
+        }
+    }
     // int opt = 4 * 1024 * 1024;
 
     //    if (setsockopt(mUdpSocket->socketDescriptor(), SOL_SOCKET,
@@ -62,31 +90,13 @@ DeviceSearcher::DeviceSearcher(QHostAddress& addr, QObject* parent)
     //        printf("Set ----> SO_RCVBUF error\n");
     //    }
 
-    auto timer = new QTimer(this);
-    timer->setSingleShot(true);
-    timer->setInterval(1000);
-    connect(
-        mUdpSocket,
-        &QUdpSocket::readyRead,
-        this,
-        &DeviceSearcher::readPendingDatagrams);
-
-    connect(
-        mUdpSocket,
-        &QUdpSocket::readyRead,
-        timer,
-        static_cast<void (QTimer::*)()>(&QTimer::start));
-
     connect(
         timer, &QTimer::timeout, this, &DeviceSearcher::deviceSearchingEnded);
 }
 
 DeviceSearcher::~DeviceSearcher() {
-    if (this->mUdpSocket != NULL) {
-        mUdpSocket->close();
-        delete mUdpSocket;
-        mUdpSocket = NULL;
-    }
+    for (auto& a : mUdpSockets)
+        a->close();
 }
 
 
@@ -94,19 +104,21 @@ void
 DeviceSearcher::sendSearchMsg() {
     Message* msg     = Message::getOnvifSearchMessage();
     QString  msg_str = msg->toXmlStr();
-    mUdpSocket->writeDatagram(
-        msg_str.toUtf8(), QHostAddress("239.255.255.250"), 3702);
+    for (auto& a : mUdpSockets)
+        a->writeDatagram(
+            msg_str.toUtf8(), QHostAddress("239.255.255.250"), 3702);
     delete msg;
 }
 
 void
 DeviceSearcher::readPendingDatagrams() {
+    auto socket = static_cast<QUdpSocket*>(sender());
     do {
         QByteArray datagram;
-        datagram.resize(static_cast<int>(mUdpSocket->pendingDatagramSize()));
+        datagram.resize(static_cast<int>(socket->pendingDatagramSize()));
         QHostAddress sender;
         quint16      senderPort;
-        mUdpSocket->readDatagram(
+        socket->readDatagram(
             datagram.data(), datagram.size(), &sender, &senderPort);
 
         //        qDebug() << "========> \n" << datagram <<
@@ -230,5 +242,5 @@ DeviceSearcher::readPendingDatagrams() {
             "metadata_version",
             parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:MetadataVersion"));
         emit receiveData(device_infos);
-    } while ((mUdpSocket->hasPendingDatagrams()));
+    } while ((socket->hasPendingDatagrams()));
 }

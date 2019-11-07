@@ -10,8 +10,8 @@ class DeviceSearcher : public QObject
     Q_OBJECT
 public:
     static DeviceSearcher* searcher;
-    explicit DeviceSearcher(QHostAddress& addr, QObject* parent = 0);
-    static DeviceSearcher*     instance(QHostAddress& addr);
+    explicit DeviceSearcher(QObject* parent = nullptr);
+    static DeviceSearcher*     instance();
     static QList<QHostAddress> getHostAddress();
     ~DeviceSearcher();
 
@@ -24,7 +24,7 @@ private slots:
     void readPendingDatagrams();
 
 private:
-    QUdpSocket* mUdpSocket;
+    QList<QUdpSocket*> mUdpSockets;
 };
 } // namespace ONVIF
 #endif // ONVIF_DEVICESEARCHER_H
