@@ -107,12 +107,15 @@ public:
         default:
             break;
         }
+
+        sendRequestTimer.start();
     }
 
     // onvif managers
     ONVIF::DeviceManagement* ideviceManagement;
     ONVIF::MediaManagement*  imediaManagement;
     ONVIF::PtzManagement*    iptzManagement;
+    QTimer                   sendRequestTimer;
 
     QQueue<QPair<MessageType, QVariant>> requestQueue;
 };
@@ -127,6 +130,16 @@ QOnvifDevice::QOnvifDevice(
     : QObject(_parent),
       d_ptr{new QOnvifDevicePrivate{_serviceAddress, _userName, _password}} {
     Q_D(QOnvifDevice);
+
+    d->sendRequestTimer.setInterval(1000);
+    d->sendRequestTimer.setSingleShot(true);
+    connect(&d->sendRequestTimer, &QTimer::timeout, this, [this, d]() {
+        if (!d->requestQueue.isEmpty()) {
+            d->requestQueue.dequeue();
+            d->sendRequest();
+        } else
+            emit allResultsReceived();
+    });
 
     connect(
         d->ideviceManagement,

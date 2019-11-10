@@ -190,6 +190,8 @@ signals:
     void getResultReceived(Data, MessageType);
     void setResultReceived(bool, MessageType);
 
+    void allResultsReceived();
+
 private:
     Q_DECLARE_PRIVATE(QOnvifDevice)
     QScopedPointer<QOnvifDevicePrivate> d_ptr;

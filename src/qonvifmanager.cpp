@@ -246,6 +246,13 @@ QOnvifManager::QOnvifManager(
                     emit deviceSetResultReceived(
                         _result, _messageType, d->idevicesMap.key(_device));
                 });
+            connect(
+                _device,
+                &QOnvifDevice::allResultsReceived,
+                this,
+                [this, _device, d]() {
+                    emit deviceAllResultsReceived(d->idevicesMap.key(_device));
+                });
         });
 
     refreshDevicesList();

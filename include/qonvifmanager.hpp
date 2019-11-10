@@ -166,6 +166,8 @@ signals:
 
     void deviceGetResultReceived(Data, device::MessageType, QString);
     void deviceSetResultReceived(bool, device::MessageType, QString);
+
+    void deviceAllResultsReceived(QString);
 };
 
 #endif // QONVIFMANAGER_HPP
