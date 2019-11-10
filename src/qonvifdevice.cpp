@@ -45,6 +45,8 @@ public:
 
     void sendRequest() {
 
+        sendRequestTimer.start();
+
         if (requestQueue.isEmpty())
             return;
 
@@ -107,8 +109,6 @@ public:
         default:
             break;
         }
-
-        sendRequestTimer.start();
     }
 
     // onvif managers
@@ -394,7 +394,8 @@ QOnvifDevice::QOnvifDevice(
                 break;
             }
 
-            d->requestQueue.dequeue();
+            if (!d->requestQueue.isEmpty())
+                d->requestQueue.dequeue();
             d->sendRequest();
         });
 
@@ -822,7 +823,8 @@ QOnvifDevice::QOnvifDevice(
                 break;
             }
 
-            d->requestQueue.dequeue();
+            if (!d->requestQueue.isEmpty())
+                d->requestQueue.dequeue();
             d->sendRequest();
         });
 
@@ -901,7 +903,8 @@ QOnvifDevice::QOnvifDevice(
                 break;
             }
 
-            d->requestQueue.dequeue();
+            if (!d->requestQueue.isEmpty())
+                d->requestQueue.dequeue();
             d->sendRequest();
         });
 }
