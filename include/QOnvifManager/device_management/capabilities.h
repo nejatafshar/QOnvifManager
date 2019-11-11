@@ -42,7 +42,7 @@ class Capabilities : public QObject
         int inputConnectors READ inputConnectors WRITE setInputConnectors)
     Q_PROPERTY(int relayOutputs READ relayOutputs WRITE setRelayOutputs)
     Q_PROPERTY(bool tls11 READ tls11 WRITE setTls11)
-    Q_PROPERTY(bool tls22 READ tls22 WRITE setTls22)
+    Q_PROPERTY(bool tls12 READ tls12 WRITE setTls12)
     Q_PROPERTY(bool onboardKeyGeneration READ onboardKeyGeneration WRITE
                                                                    setOnboardKeyGeneration)
     Q_PROPERTY(bool accessPolicyConfig READ accessPolicyConfig WRITE
@@ -153,8 +153,8 @@ public:
         return m_tls11;
     }
 
-    bool tls22() const {
-        return m_tls22;
+    bool tls12() const {
+        return m_tls12;
     }
 
     bool onboardKeyGeneration() const {
@@ -297,8 +297,8 @@ public slots:
         m_tls11 = arg;
     }
 
-    void setTls22(bool arg) {
-        m_tls22 = arg;
+    void setTls12(bool arg) {
+        m_tls12 = arg;
     }
 
     void setOnboardKeyGeneration(bool arg) {
@@ -373,7 +373,7 @@ private:
     int     m_inputConnectors;
     int     m_relayOutputs;
     bool    m_tls11;
-    bool    m_tls22;
+    bool    m_tls12;
     bool    m_onboardKeyGeneration;
     bool    m_accessPolicyConfig;
     bool    m_x509Token;

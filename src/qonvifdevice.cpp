@@ -228,7 +228,7 @@ QOnvifDevice::QOnvifDevice(
                 des.inputConnectors        = src->inputConnectors();
                 des.relayOutputs           = src->relayOutputs();
                 des.tls11                  = src->tls11();
-                des.tls22                  = src->tls22();
+                des.tls12                  = src->tls12();
                 des.onboardKeyGeneration   = src->onboardKeyGeneration();
                 des.accessPolicyConfig     = src->accessPolicyConfig();
                 des.x509Token              = src->x509Token();

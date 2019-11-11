@@ -64,7 +64,7 @@ struct Data {
         int     inputConnectors;
         int     relayOutputs;
         bool    tls11;
-        bool    tls22;
+        bool    tls12;
         bool    onboardKeyGeneration;
         bool    accessPolicyConfig;
         bool    x509Token;
