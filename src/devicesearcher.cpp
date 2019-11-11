@@ -225,19 +225,16 @@ DeviceSearcher::readPendingDatagrams() {
                             "wsa:EndpointReference/wsa:Address"));
         device_infos.insert(
             "types", parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:Types"));
-        device_infos.insert(
-            "device_ip",
-            parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:Scopes"));
 
         QString address =
             parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:XAddrs");
         QStringList addresses = address.split(' ');
         address               = addresses.value(0);
         device_infos.insert("device_service_address", address);
+        device_infos.insert("device_ip", QUrl{address}.host());
         device_infos.insert(
             "scopes",
-            parser.getValue("//d:ProbeMatches/d:ProbeMatch/"
-                            "wsa:EndpointReference/wsa:Address"));
+            parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:Scopes"));
         device_infos.insert(
             "metadata_version",
             parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:MetadataVersion"));
