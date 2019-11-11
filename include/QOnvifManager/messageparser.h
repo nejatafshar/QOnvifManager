@@ -17,6 +17,7 @@ public:
         QObject*                 parent = 0);
     ~MessageParser();
     QString    getValue(const QString& xpath);
+    QString    regXValue(const QString& regexpr) const;
     bool       find(const QString& xpath);
     QXmlQuery* query();
     QString    nameSpace();
@@ -25,6 +26,7 @@ private:
     QXmlQuery mQuery;
     QString   mNamespaceQueryStr;
     QBuffer   mBuffer;
+    QString   mXml;
 };
 } // namespace ONVIF
 

@@ -238,6 +238,19 @@ DeviceSearcher::readPendingDatagrams() {
         device_infos.insert(
             "metadata_version",
             parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:MetadataVersion"));
+
+        auto name     = parser.regXValue("odm:name:(?<val>.+?)[\\s<]");
+        if (name == "")
+            name = parser.regXValue("name.(?<val>[^\\s|<]+)");
+        auto location = parser.regXValue("odm:location:(?<val>.+?)[\\s<]");
+        if (location == "")
+            location = parser.regXValue("location.(?<val>[^\\s|<]+)");
+        auto hardware = parser.regXValue("hardware.(?<val>[^\\s|<]+)");
+
+        device_infos.insert("name", name);
+        device_infos.insert("location", location);
+        device_infos.insert("hardware", hardware);
+
         emit receiveData(device_infos);
     } while ((socket->hasPendingDatagrams()));
 }

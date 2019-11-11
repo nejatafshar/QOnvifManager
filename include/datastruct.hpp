@@ -13,6 +13,9 @@ struct Data {
         QString deviceServiceAddress;
         QString scopes;
         QString metadataVersion;
+        QString name;
+        QString location;
+        QString hardware;
     } probeData;
 
     // device management
@@ -79,7 +82,7 @@ struct Data {
         QString username;
         QString password;
         QString userLevel;
-        int actionMode;//add edit delete
+        int     actionMode; // add edit delete
     };
     using Users = QList<User>;
     Users users;

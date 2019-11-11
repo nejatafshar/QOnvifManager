@@ -2,6 +2,9 @@
 #include <QDebug>
 #include <QHashIterator>
 
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
+#include <QRegularExpressionMatchIterator>
 #include <QXmlResultItems>
 
 using namespace ONVIF;
@@ -9,6 +12,7 @@ using namespace ONVIF;
 MessageParser::MessageParser(
     const QString& data, QHash<QString, QString>& namespaces, QObject* parent)
     : QObject(parent) {
+    mXml = data;
     mBuffer.setData(data.toUtf8());
     mBuffer.open(QIODevice::ReadOnly);
     mQuery.bindVariable("inputDocument", &mBuffer);
@@ -36,6 +40,17 @@ MessageParser::getValue(const QString& xpath) {
     }
     mQuery.evaluateTo(&str);
     return str.trimmed();
+}
+
+QString
+MessageParser::regXValue(const QString& regexpr) const {
+    QRegularExpression              regExpr(regexpr);
+    QRegularExpressionMatchIterator iterator = regExpr.globalMatch(mXml);
+    while (iterator.hasNext()) {
+        QRegularExpressionMatch match = iterator.next();
+        return match.captured("val");
+    }
+    return "";
 }
 
 bool
