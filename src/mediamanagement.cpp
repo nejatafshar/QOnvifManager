@@ -2119,7 +2119,7 @@ MediaManagement::onMessageParserReceived(
         imageSetting->setExposureIris(
             result->getValue("//timg:ImagingSettings/tt:Exposure/tt:Iris")
                 .toInt());
-        imageSetting->setExposureManual(
+        imageSetting->setAutofocusManual(
             result->getValue(
                 "//timg:ImagingSettings/tt:Focus/tt:AutoFocusMode") == "MANUAL"
                 ? true
