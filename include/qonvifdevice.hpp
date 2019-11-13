@@ -97,6 +97,8 @@ public:
 
     Data& data();
 
+    void setUserPass(const QString& user, const QString& pass);
+
     // device management
     void getInformation();
     void getScopes();

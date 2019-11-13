@@ -918,6 +918,16 @@ QOnvifDevice::data() {
 }
 
 void
+QOnvifDevice::setUserPass(const QString& user, const QString& pass) {
+    Q_D(QOnvifDevice);
+    d->iuserName = user;
+    d->ipassword = pass;
+    d->ideviceManagement->setUserPass(user, pass);
+    d->imediaManagement->setUserPass(user, pass);
+    d->iptzManagement->setUserPass(user, pass);
+}
+
+void
 QOnvifDevice::getInformation() {
     Q_D(QOnvifDevice);
     d->addRequest(MessageType::Information, QVariant());
@@ -1201,39 +1211,40 @@ QOnvifDevice::getVideoSourceConfigurations() {
 void
 QOnvifDevice::getVideoEncoderConfigurationOptions() {
     Q_D(QOnvifDevice);
-//    if (d->idata.profiles.toKenPro.isEmpty()) {
-//        getProfiles();
+    //    if (d->idata.profiles.toKenPro.isEmpty()) {
+    //        getProfiles();
 
-//        QTimer timer;
-//        timer.setSingleShot(true);
-//        QEventLoop loop;
-//        connect(
-//            this, &QOnvifDevice::profilesReceived, &loop, &QEventLoop::quit);
-//        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-//        timer.start(3000);
-//        loop.exec();
+    //        QTimer timer;
+    //        timer.setSingleShot(true);
+    //        QEventLoop loop;
+    //        connect(
+    //            this, &QOnvifDevice::profilesReceived, &loop,
+    //            &QEventLoop::quit);
+    //        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    //        timer.start(3000);
+    //        loop.exec();
 
-//        if (!timer.isActive())
-//            return;
-//    }
-//    if (d->idata.mediaConfig.video.encodingConfigs.token.isEmpty()) {
-//        getVideoEncoderConfigurations();
+    //        if (!timer.isActive())
+    //            return;
+    //    }
+    //    if (d->idata.mediaConfig.video.encodingConfigs.token.isEmpty()) {
+    //        getVideoEncoderConfigurations();
 
-//        QTimer timer;
-//        timer.setSingleShot(true);
-//        QEventLoop loop;
-//        connect(
-//            this,
-//            &QOnvifDevice::videoEncoderConfigurationsReceived,
-//            &loop,
-//            &QEventLoop::quit);
-//        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-//        timer.start(3000);
-//        loop.exec();
+    //        QTimer timer;
+    //        timer.setSingleShot(true);
+    //        QEventLoop loop;
+    //        connect(
+    //            this,
+    //            &QOnvifDevice::videoEncoderConfigurationsReceived,
+    //            &loop,
+    //            &QEventLoop::quit);
+    //        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    //        timer.start(3000);
+    //        loop.exec();
 
-//        if (!timer.isActive())
-//            return;
-//    }
+    //        if (!timer.isActive())
+    //            return;
+    //    }
 
     // get video encoder options
     d->idata.mediaConfig.video.encodingConfigs.options.clear();
@@ -1254,21 +1265,22 @@ QOnvifDevice::getVideoEncoderConfigurationOptions() {
 void
 QOnvifDevice::getStreamUris() {
     Q_D(QOnvifDevice);
-//    if (d->idata.profiles.toKenPro.isEmpty()) {
-//        getProfiles();
+    //    if (d->idata.profiles.toKenPro.isEmpty()) {
+    //        getProfiles();
 
-//        QTimer timer;
-//        timer.setSingleShot(true);
-//        QEventLoop loop;
-//        connect(
-//            this, &QOnvifDevice::profilesReceived, &loop, &QEventLoop::quit);
-//        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-//        timer.start(3000);
-//        loop.exec();
+    //        QTimer timer;
+    //        timer.setSingleShot(true);
+    //        QEventLoop loop;
+    //        connect(
+    //            this, &QOnvifDevice::profilesReceived, &loop,
+    //            &QEventLoop::quit);
+    //        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    //        timer.start(3000);
+    //        loop.exec();
 
-//        if (!timer.isActive())
-//            return;
-//    }
+    //        if (!timer.isActive())
+    //            return;
+    //    }
 
     d->idata.profiles.streamUris.clear();
 
@@ -1294,21 +1306,22 @@ QOnvifDevice::getImageSetting() {
 void
 QOnvifDevice::getImageSettingOptions() {
     Q_D(QOnvifDevice);
-//    if (d->idata.profiles.sourceTokenVsc.isEmpty()) {
-//        getProfiles();
+    //    if (d->idata.profiles.sourceTokenVsc.isEmpty()) {
+    //        getProfiles();
 
-//        QTimer timer;
-//        timer.setSingleShot(true);
-//        QEventLoop loop;
-//        connect(
-//            this, &QOnvifDevice::profilesReceived, &loop, &QEventLoop::quit);
-//        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-//        timer.start(3000);
-//        loop.exec();
+    //        QTimer timer;
+    //        timer.setSingleShot(true);
+    //        QEventLoop loop;
+    //        connect(
+    //            this, &QOnvifDevice::profilesReceived, &loop,
+    //            &QEventLoop::quit);
+    //        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    //        timer.start(3000);
+    //        loop.exec();
 
-//        if (!timer.isActive())
-//            return;
-//    }
+    //        if (!timer.isActive())
+    //            return;
+    //    }
 
     QVariantList parameters;
     if (!d->idata.profiles.sourceTokenVsc.isEmpty())

@@ -41,6 +41,7 @@ public:
         Message*            message,
         device::MessageType messageType,
         const QString&      namespaceKey = "");
+    void setUserPass(const QString& user, const QString& pass);
 
 signals:
 

@@ -270,6 +270,15 @@ QOnvifManager::refreshDevicesList() {
 }
 
 void
+QOnvifManager::setUserPass(
+    const QString& _deviceEndPointAddress,
+    const QString& user,
+    const QString& pass) {
+    Q_D(QOnvifManager);
+    d->idevicesMap.value(_deviceEndPointAddress)->setUserPass(user, pass);
+}
+
+void
 QOnvifManager::getDeviceCapabilities(QString _deviceEndPointAddress) {
     Q_D(QOnvifManager);
     if (!cameraExist(_deviceEndPointAddress))
@@ -591,9 +600,9 @@ QOnvifManager::onReceiveData(QHash<QString, QString> _deviceHash) {
         _deviceHash.value("device_service_address");
     probeData.scopes          = _deviceHash.value("scopes");
     probeData.metadataVersion = _deviceHash.value("metadata_version");
-    probeData.name = _deviceHash.value("name");
-    probeData.location = _deviceHash.value("location");
-    probeData.hardware = _deviceHash.value("hardware");
+    probeData.name            = _deviceHash.value("name");
+    probeData.location        = _deviceHash.value("location");
+    probeData.hardware        = _deviceHash.value("hardware");
     QOnvifDevice* device      = new QOnvifDevice(
         probeData.deviceServiceAddress, d->iuserName, d->ipassword, this);
     device->setProbeData(probeData);

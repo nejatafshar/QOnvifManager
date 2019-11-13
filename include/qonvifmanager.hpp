@@ -38,6 +38,11 @@ public:
 
     bool refreshDevicesList();
 
+    void setUserPass(
+        const QString& _deviceEndPointAddress,
+        const QString& user,
+        const QString& pass);
+
     void getDeviceCapabilities(QString _deviceEndPointAddress);
     void getDeviceInformation(QString _deviceEndPointAddress);
     void getDeviceScopes(QString _deviceEndPointAddress);

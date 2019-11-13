@@ -51,6 +51,12 @@ Service::sendMessage(
         });
 }
 
+void
+Service::setUserPass(const QString& user, const QString& pass) {
+    mUsername = user;
+    mPassword = pass;
+}
+
 Message*
 Service::createMessage(QHash<QString, QString>& namespaces) {
     return Message::getMessageWithUserInfo(namespaces, mUsername, mPassword);
