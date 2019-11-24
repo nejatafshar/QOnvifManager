@@ -2083,7 +2083,8 @@ MediaManagement::onMessageParserReceived(
     } break;
     case device::MessageType::StreamUri: {
         StreamUri* streamUri = new StreamUri();
-        streamUri->setUri(result->getValue("//tt:Uri").trimmed());
+        streamUri->setUri(
+            result->getValue("//tt:Uri").trimmed().replace("&amp;", "&"));
         streamUri->setInvalidAfterConnect(
             result->getValue("//tt:InvalidAfterConnect").trimmed() == "true"
                 ? true
