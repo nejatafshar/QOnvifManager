@@ -2,6 +2,7 @@
 #include "messageparser.h"
 #include <QDebug>
 #include <QXmlResultItems>
+
 using namespace ONVIF;
 MediaManagement::MediaManagement(
     const QString& wsdlUrl, const QString& username, const QString& password)
@@ -2083,8 +2084,11 @@ MediaManagement::onMessageParserReceived(
     } break;
     case device::MessageType::StreamUri: {
         StreamUri* streamUri = new StreamUri();
-        streamUri->setUri(
-            result->getValue("//tt:Uri").trimmed().replace("&amp;", "&"));
+        auto       uri =
+            QUrl{result->getValue("//tt:Uri").trimmed().replace("&amp;", "&")};
+        uri.setUserName(mUsername);
+        uri.setPassword(mPassword);
+        streamUri->setUri(uri.toString());
         streamUri->setInvalidAfterConnect(
             result->getValue("//tt:InvalidAfterConnect").trimmed() == "true"
                 ? true

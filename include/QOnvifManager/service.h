@@ -50,9 +50,9 @@ signals:
 protected:
     virtual QHash<QString, QString> namespaces(const QString& key) = 0;
     Message* createMessage(QHash<QString, QString>& namespaces);
+    QString  mUsername, mPassword;
 
 private:
-    QString               mUsername, mPassword;
     QNetworkAccessManager networkManager;
     QString               mUrl;
 };
