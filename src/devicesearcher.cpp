@@ -90,8 +90,14 @@ DeviceSearcher::DeviceSearcher(QObject* parent) : QObject(parent) {
     //        printf("Set ----> SO_RCVBUF error\n");
     //    }
 
-    connect(
-        timer, &QTimer::timeout, this, &DeviceSearcher::deviceSearchingEnded);
+    connect(timer, &QTimer::timeout, this, [this]() {
+        for (const auto& k : mDevicesNotRespondingCount.keys())
+            if (!mFoundDevices.contains(k))
+                mDevicesNotRespondingCount[k]++;
+            else
+                mDevicesNotRespondingCount[k] = 0;
+        emit deviceSearchingEnded();
+    });
 }
 
 DeviceSearcher::~DeviceSearcher() {
@@ -102,6 +108,7 @@ DeviceSearcher::~DeviceSearcher() {
 
 void
 DeviceSearcher::sendSearchMsg() {
+    mFoundDevices.clear();
     Message* msg     = Message::getOnvifSearchMessage();
     QString  msg_str = msg->toXmlStr();
     for (auto& a : mUdpSockets)
@@ -219,10 +226,9 @@ DeviceSearcher::readPendingDatagrams() {
         MessageParser parser(QString(datagram), namespaces);
 
         QHash<QString, QString> device_infos;
-        device_infos.insert(
-            "ep_address",
-            parser.getValue("//d:ProbeMatches/d:ProbeMatch/"
-                            "wsa:EndpointReference/wsa:Address"));
+        auto epAddress = parser.getValue("//d:ProbeMatches/d:ProbeMatch/"
+                                         "wsa:EndpointReference/wsa:Address");
+        device_infos.insert("ep_address", epAddress);
         device_infos.insert(
             "types", parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:Types"));
 
@@ -239,7 +245,7 @@ DeviceSearcher::readPendingDatagrams() {
             "metadata_version",
             parser.getValue("//d:ProbeMatches/d:ProbeMatch/d:MetadataVersion"));
 
-        auto name     = parser.regXValue("odm:name:(?<val>.+?)[\\s<]");
+        auto name = parser.regXValue("odm:name:(?<val>.+?)[\\s<]");
         if (name == "")
             name = parser.regXValue("name.(?<val>[^\\s|<]+)");
         auto location = parser.regXValue("odm:location:(?<val>.+?)[\\s<]");
@@ -250,6 +256,10 @@ DeviceSearcher::readPendingDatagrams() {
         device_infos.insert("name", name);
         device_infos.insert("location", location);
         device_infos.insert("hardware", hardware);
+
+        if (!mDevicesNotRespondingCount.contains(epAddress))
+            mDevicesNotRespondingCount.insert(epAddress, 0);
+        mFoundDevices.insert(epAddress);
 
         emit receiveData(device_infos);
     } while ((socket->hasPendingDatagrams()));

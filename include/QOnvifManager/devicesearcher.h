@@ -1,7 +1,7 @@
 #ifndef ONVIF_DEVICESEARCHER_H
 #define ONVIF_DEVICESEARCHER_H
 
-#include <QObject>
+#include <QMap>
 #include <QUdpSocket>
 
 namespace ONVIF {
@@ -16,10 +16,14 @@ public:
     ~DeviceSearcher();
 
     void sendSearchMsg();
+
+    QSet<QString>      mFoundDevices;
+    QMap<QString, int> mDevicesNotRespondingCount;
+
 signals:
     void receiveData(const QHash<QString, QString>& data);
     void deviceSearchingEnded();
-public slots:
+
 private slots:
     void readPendingDatagrams();
 

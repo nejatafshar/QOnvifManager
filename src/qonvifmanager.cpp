@@ -3,6 +3,8 @@
 #include "devicesearcher.h"
 #include "systemdateandtime.h"
 
+#include <QTimer>
+
 using namespace device;
 
 class QOnvifManagerPrivate
@@ -37,7 +39,26 @@ QOnvifManager::QOnvifManager(
     connect(
         d->ideviceSearcher,
         &ONVIF::DeviceSearcher::deviceSearchingEnded,
-        [this]() { emit deviceSearchingEnded(); });
+        [this, d]() {
+            auto keys = d->idevicesMap.keys();
+            for (const auto& k : keys)
+                if (d->ideviceSearcher->mDevicesNotRespondingCount.value(k) >
+                    2) {
+                    d->ideviceSearcher->mDevicesNotRespondingCount.remove(k);
+                    d->idevicesMap.value(k)->deleteLater();
+                    d->idevicesMap.remove(k);
+                }
+            emit deviceSearchingEnded();
+        });
+
+    auto refreshTimer = new QTimer(this);
+    refreshTimer->setInterval(10000);
+    connect(
+        refreshTimer,
+        &QTimer::timeout,
+        this,
+        &QOnvifManager::refreshDevicesList);
+    refreshTimer->start();
 
     connect(
         this,
@@ -263,8 +284,6 @@ QOnvifManager::~QOnvifManager() {}
 bool
 QOnvifManager::refreshDevicesList() {
     Q_D(QOnvifManager);
-    qDeleteAll(d->idevicesMap);
-    d->idevicesMap.clear();
     d->ideviceSearcher->sendSearchMsg();
     return true;
 }
