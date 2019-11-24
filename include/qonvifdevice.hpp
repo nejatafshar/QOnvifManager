@@ -97,7 +97,9 @@ public:
 
     Data& data();
 
-    void setUserPass(const QString& user, const QString& pass);
+    void    setUserPass(const QString& user, const QString& pass);
+    QString getUsername() const;
+    QString getPassword() const;
 
     // device management
     void getInformation();

@@ -927,6 +927,18 @@ QOnvifDevice::setUserPass(const QString& user, const QString& pass) {
     d->iptzManagement->setUserPass(user, pass);
 }
 
+QString
+QOnvifDevice::getUsername() const {
+    Q_D(const QOnvifDevice);
+    return d->iuserName;
+}
+
+QString
+QOnvifDevice::getPassword() const {
+    Q_D(const QOnvifDevice);
+    return d->ipassword;
+}
+
 void
 QOnvifDevice::getInformation() {
     Q_D(QOnvifDevice);
