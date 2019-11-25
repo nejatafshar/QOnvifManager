@@ -2086,8 +2086,10 @@ MediaManagement::onMessageParserReceived(
         StreamUri* streamUri = new StreamUri();
         auto       uri =
             QUrl{result->getValue("//tt:Uri").trimmed().replace("&amp;", "&")};
-        uri.setUserName(mUsername);
-        uri.setPassword(mPassword);
+        if (uri.userName().isEmpty() || uri.password().isEmpty()) {
+            uri.setUserName(mUsername);
+            uri.setPassword(mPassword);
+        }
         streamUri->setUri(uri.toString());
         streamUri->setInvalidAfterConnect(
             result->getValue("//tt:InvalidAfterConnect").trimmed() == "true"
